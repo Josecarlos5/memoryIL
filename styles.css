@@ -3,9 +3,18 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f0f0;
+    background-color: #003366; /* Marine blue background */
     margin: 0;
     font-family: Arial, sans-serif;
+    color: white;
+}
+
+#game-container {
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
 }
 
 #game-board {
@@ -24,12 +33,15 @@ body {
     cursor: pointer;
     font-size: 24px;
     color: white;
+    border-radius: 10px; /* Rounded corners */
+    transition: transform 0.3s; /* Smooth transform */
 }
 
 .card img {
     width: 100%;
     height: 100%;
     display: none;
+    border-radius: 10px; /* Match the card's rounded corners */
 }
 
 .card.flipped img {
@@ -38,5 +50,5 @@ body {
 
 .card.flipped {
     background-color: #fff;
+    transform: rotateY(180deg); /* Flip effect */
 }
-
