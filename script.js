@@ -1,46 +1,28 @@
 document.addEventListener("DOMContentLoaded", () => {
     const cardArray = [
-        { name: 'sticker1', img: 'images/sticker1.png' },
-        { name: 'sticker1', img: 'images/sticker1.png' },
-        { name: 'sticker2', img: 'images/sticker2.png' },
-        { name: 'sticker2', img: 'images/sticker2.png' },
-        { name: 'sticker3', img: 'images/sticker3.png' },
-        { name: 'sticker3', img: 'images/sticker3.png' },
-        { name: 'sticker4', img: 'images/sticker4.png' },
-        { name: 'sticker4', img: 'images/sticker4.png' },
-        { name: 'sticker5', img: 'images/sticker5.png' },
-        { name: 'sticker5', img: 'images/sticker5.png' },
-        { name: 'sticker6', img: 'images/sticker6.png' },
-        { name: 'sticker6', img: 'images/sticker6.png' },
-        { name: 'sticker7', img: 'images/sticker7.png' },
-        { name: 'sticker7', img: 'images/sticker7.png' },
-        { name: 'sticker8', img: 'images/sticker8.png' },
-        { name: 'sticker8', img: 'images/sticker8.png' },
-        { name: 'sticker9', img: 'images/sticker9.png' },
-        { name: 'sticker9', img: 'images/sticker9.png' },
-        { name: 'sticker10', img: 'images/sticker10.png' },
-        { name: 'sticker10', img: 'images/sticker10.png' },
-        { name: 'sticker11', img: 'images/sticker11.png' },
-        { name: 'sticker11', img: 'images/sticker11.png' },
-        { name: 'sticker12', img: 'images/sticker12.png' },
-        { name: 'sticker12', img: 'images/sticker12.png' },
-        { name: 'sticker13', img: 'images/sticker13.png' },
-        { name: 'sticker13', img: 'images/sticker13.png' },
-        { name: 'sticker14', img: 'images/sticker14.png' },
-        { name: 'sticker14', img: 'images/sticker14.png' },
-        { name: 'sticker15', img: 'images/sticker15.png' },
-        { name: 'sticker15', img: 'images/sticker15.png' },
-        { name: 'sticker16', img: 'images/sticker16.png' },
-        { name: 'sticker16', img: 'images/sticker16.png' },
-        { name: 'sticker17', img: 'images/sticker17.png' },
-        { name: 'sticker17', img: 'images/sticker17.png' },
-        { name: 'sticker18', img: 'images/sticker18.png' },
-        { name: 'sticker18', img: 'images/sticker18.png' }
+        { name: '1', img: '1' },
+        { name: '1', img: '1' },
+        { name: '2', img: '2' },
+        { name: '2', img: '2' },
+        { name: '3', img: '3' },
+        { name: '3', img: '3' },
+        { name: '4', img: '4' },
+        { name: '4', img: '4' },
+        { name: '5', img: '5' },
+        { name: '5', img: '5' },
+        { name: '6', img: '6' },
+        { name: '6', img: '6' },
+        { name: '7', img: '7' },
+        { name: '7', img: '7' },
+        { name: '8', img: '8' },
+        { name: '8', img: '8' }
     ];
 
     cardArray.sort(() => 0.5 - Math.random());
 
     const gameBoard = document.getElementById('game-board');
+    const grid = document.createElement('div');
+    gameBoard.appendChild(grid);
 
     let chosenCards = [];
     let chosenCardIds = [];
@@ -52,10 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
             cardElement.setAttribute('class', 'card');
             cardElement.setAttribute('data-id', index);
             cardElement.addEventListener('click', flipCard);
-            const cardImg = document.createElement('img');
-            cardImg.setAttribute('src', card.img);
-            cardElement.appendChild(cardImg);
-            gameBoard.appendChild(cardElement);
+            grid.appendChild(cardElement);
         });
     }
 
@@ -63,6 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const cardId = this.getAttribute('data-id');
         chosenCards.push(cardArray[cardId].name);
         chosenCardIds.push(cardId);
+        this.innerText = cardArray[cardId].img;
         this.classList.add('flipped');
         if (chosenCards.length === 2) {
             setTimeout(checkForMatch, 500);
@@ -79,7 +59,9 @@ document.addEventListener("DOMContentLoaded", () => {
             cards[optionTwoId].removeEventListener('click', flipCard);
             cardsWon.push(chosenCards);
         } else {
+            cards[optionOneId].innerText = '';
             cards[optionOneId].classList.remove('flipped');
+            cards[optionTwoId].innerText = '';
             cards[optionTwoId].classList.remove('flipped');
         }
 
