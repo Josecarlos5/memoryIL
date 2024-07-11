@@ -1,17 +1,44 @@
 body {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f0f0;
+    background-color: #0000ff; /* Fundo azul */
     margin: 0;
     font-family: Arial, sans-serif;
+    color: #ffffff; /* Cor do texto em branco */
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#logo-container {
+    margin-right: 20px; /* Espaço entre o logo e a grelha */
+}
+
+.logo {
+    max-width: 100px;
+    height: auto;
 }
 
 #game-board {
     display: grid;
-    grid-template-columns: repeat(6, 100px); /* 6 columns */
+    grid-template-columns: repeat(6, 100px); /* 6 colunas */
     gap: 10px;
+    width: 700px; /* Ajustar a largura e altura para caber na grelha */
+    height: 700px;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #fff; /* Fundo branco */
+    border: 2px solid #000; /* Borda preta */
 }
 
 .card {
@@ -39,4 +66,3 @@ body {
 .card.flipped {
     background-color: #fff;
 }
-

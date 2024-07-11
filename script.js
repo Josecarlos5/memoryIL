@@ -41,7 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
     cardArray.sort(() => 0.5 - Math.random());
 
     const gameBoard = document.getElementById('game-board');
-
     let chosenCards = [];
     let chosenCardIds = [];
     let cardsWon = [];
@@ -60,12 +59,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function flipCard() {
-        const cardId = this.getAttribute('data-id');
-        chosenCards.push(cardArray[cardId].name);
-        chosenCardIds.push(cardId);
-        this.classList.add('flipped');
-        if (chosenCards.length === 2) {
-            setTimeout(checkForMatch, 500);
+        if (chosenCards.length < 2) {
+            const cardId = this.getAttribute('data-id');
+            if (!chosenCardIds.includes(cardId)) {
+                chosenCards.push(cardArray[cardId].name);
+                chosenCardIds.push(cardId);
+                this.classList.add('flipped');
+                if (chosenCards.length === 2) {
+                    setTimeout(checkForMatch, 500);
+                }
+            }
         }
     }
 
@@ -74,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const optionOneId = chosenCardIds[0];
         const optionTwoId = chosenCardIds[1];
 
-        if (chosenCards[0] === chosenCards[1] && optionOneId !== optionTwoId) {
+        if (chosenCards[0] === chosenCards[1]) {
             cards[optionOneId].removeEventListener('click', flipCard);
             cards[optionTwoId].removeEventListener('click', flipCard);
             cardsWon.push(chosenCards);
@@ -87,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
         chosenCardIds = [];
 
         if (cardsWon.length === cardArray.length / 2) {
-            alert('Congratulations! You found all the matches!');
+            alert('Parabéns, já pareces o Rui Rocha!');
         }
     }
 
